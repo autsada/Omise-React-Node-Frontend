@@ -9,7 +9,7 @@ export class Checkout extends Component {
   handleLoadScript = () => {
     OmiseCard = window.OmiseCard;
     OmiseCard.configure({
-      publicKey: "Your Keys",
+      publicKey: " OMISE_PUBLIC_KEY",
       currency: "thb",
       frameLabel: "Sabai Shop",
       submitLabel: "PAY NOW",
