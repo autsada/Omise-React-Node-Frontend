@@ -1,0 +1,38 @@
+.modal {
+    width: 60%;
+    height: 80%;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    position: fixed;
+    top: 10vh;
+    left: 20%;
+    padding: 60px 0;
+    vertical-align: middle;
+}
+
+.modal__content {
+    margin-top: 40px;
+}
+
+.amount {
+    color: blue;
+}
+
+.success {
+    color: blue;
+}
+
+.failed {
+    color: red;
+}
+
+.pending {
+    color: yellow;
+}
+
+.modal .btn {
+    margin: 120px 5px;
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+}

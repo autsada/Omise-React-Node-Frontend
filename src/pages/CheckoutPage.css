@@ -1,0 +1,20 @@
+.cart__summary {
+  border: 2px solid blue;
+  margin-bottom: 40px;
+}
+
+.amount {
+  color: blue;
+}
+
+.success {
+  color: blue;
+}
+
+.failed {
+  color: red;
+}
+
+.pending {
+  color: yellow;
+}
