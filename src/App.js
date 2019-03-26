@@ -36,6 +36,7 @@ class App extends Component {
   state = {
     products,
     cart: {
+      email: "guest@test.com",
       name: "Guest",
       items: [],
       amount: 0,
@@ -195,7 +196,6 @@ class App extends Component {
                   />
                 )}
               />
-
               <Route
                 path="/checkout"
                 render={props => (
@@ -206,7 +206,6 @@ class App extends Component {
                   />
                 )}
               />
-
               <Route path="/message" component={Message} />
             </Switch>
           </main>

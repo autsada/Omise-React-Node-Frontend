@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import MessageDetails from "../components/modal/MessageDetails";
 import Spinner from "../components/spinner/Spinner";
@@ -9,6 +10,15 @@ export class Message extends Component {
     openModal: false,
     charge: undefined
   };
+
+ async componentDidMount() {
+    this.setState({ loading: true })
+    const response = await axios.get("https://some url/Webhooks");
+
+    if (response.data) {
+      this.setState({ loading: false, openModal: true, charge: response.data });
+    }
+  }
 
   handleCloseModal = () => {
     this.setState({ openModal: false });

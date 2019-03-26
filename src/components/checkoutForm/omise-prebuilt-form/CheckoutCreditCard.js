@@ -3,17 +3,18 @@ import Script from "react-load-script";
 
 import "./Checkout.css";
 
+import { publicKey } from "../../../confidential/keys";
+
 let OmiseCard;
 
 export class Checkout extends Component {
-  handleLoadScript = () => {
+  handleScriptLoad = () => {
     OmiseCard = window.OmiseCard;
     OmiseCard.configure({
-      publicKey: "pkey_test_5ex05ynxfnnc33txbyx",
-      currency: "thb",
+      publicKey,
       frameLabel: "Sabai Shop",
       submitLabel: "PAY NOW",
-      buttonLabel: "Pay with Omise"
+      currency: "thb"
     });
   };
 
@@ -27,34 +28,39 @@ export class Checkout extends Component {
   };
 
   omiseCardHandler = () => {
+    const { cart, createCreditCardCharge } = this.props;
     OmiseCard.open({
-      frameDescription: 'Invoice #3847',
-      amount: 10000,
-      onCreateTokenSuccess: (token) => {
-        console.log(token)
+      frameDescription: "Invoice #3847",
+      amount: cart.amount,
+      onCreateTokenSuccess: token => {
+        createCreditCardCharge(cart.email, cart.name, cart.amount, token);
       },
-      onFormClosed: () => {},
-    })
-  }
+      onFormClosed: () => {}
+    });
+  };
 
   handleClick = e => {
     e.preventDefault();
     this.creditCardConfigure();
-    this.omiseCardHandler()
+    this.omiseCardHandler();
   };
 
   render() {
+    const { cart } = this.props;
+
     return (
       <div className="own-form">
         <Script
           url="https://cdn.omise.co/omise.js"
-          onLoad={this.handleLoadScript}
+          onLoad={this.handleScriptLoad}
         />
+
         <form>
           <button
             id="credit-card"
             className="btn"
             type="button"
+            disabled={cart.amount === 0}
             onClick={this.handleClick}
           >
             Pay with Credit Card
