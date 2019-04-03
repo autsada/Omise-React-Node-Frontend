@@ -26,7 +26,10 @@ export class CartCheckoutPage extends Component {
         }
       });
       const resData = res.data
-      this.setState({charge: resData})
+      if (resData) {
+        this.setState({charge: resData})
+        this.props.clearCart()
+      }
     } catch (error) {
       console.log(error)
     }
@@ -34,6 +37,7 @@ export class CartCheckoutPage extends Component {
 
   render() {
     const { cart } = this.props;
+    const {charge} = this.state
 
     return (
       <div className="own-form">
@@ -53,9 +57,18 @@ export class CartCheckoutPage extends Component {
         <CheckoutInternetBanking
           cart={cart}
         />
-        <div className="message">
-
-        </div>
+        {
+          charge &&
+          <div className="message">
+            <h4>Thank you for your payment with credit card.</h4>
+            <p>
+              Your payment amount is <span className="amount">{new Intl.NumberFormat().format(charge.amount / 100)} Baht. </span>
+               Status <span className={
+                charge.status === 'successful' ? 'success' : 'failed'
+              }>{charge.status}</span>
+            </p>
+          </div>
+        }
       </div>
     );
   }

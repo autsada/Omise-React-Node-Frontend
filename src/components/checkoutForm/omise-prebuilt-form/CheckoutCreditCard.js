@@ -56,6 +56,7 @@ export class Checkout extends Component {
             id="credit-card"
             className="btn"
             type="button"
+            disabled={this.props.cart.amount === 0}
             onClick={this.handleClick}
           >
             Pay with Credit Card
