@@ -4,8 +4,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-n the project directory, you can run:
-
 1. `npm install` to install all dependencies
 
 2. Replace OMISE_PUBLIC_KEY in CheckoutCreditCard.js and CheckoutInternetBanking.js with your keys
