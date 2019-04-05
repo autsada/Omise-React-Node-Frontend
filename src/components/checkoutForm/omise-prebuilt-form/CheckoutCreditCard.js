@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Script from "react-load-script";
 
+import {publicKey} from '../../../confidential/keys'
+
 import "./Checkout.css";
 
 let OmiseCard;
@@ -9,7 +11,7 @@ export class Checkout extends Component {
   handleLoadScript = () => {
     OmiseCard = window.OmiseCard;
     OmiseCard.configure({
-      publicKey: "pkey_test_5ex05ynxfnnc33txbyx",
+      publicKey,
       currency: "thb",
       frameLabel: "Sabai Shop",
       submitLabel: "PAY NOW",

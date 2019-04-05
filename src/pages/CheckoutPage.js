@@ -10,6 +10,7 @@ export class CartCheckoutPage extends Component {
   state = {
     charge: undefined
   }
+
   createCreditCardCharge = async (email, name, amount, token) => {
     try {
       const res = await axios({
@@ -29,6 +30,33 @@ export class CartCheckoutPage extends Component {
       if (resData) {
         this.setState({charge: resData})
         this.props.clearCart()
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  createInternetBankingCharge = async (email, name, amount, token) => {
+    try {
+      const res = await axios({
+        method: 'post',
+        url: 'http://localhost:80/checkout-internet-banking',
+        data: {
+          email,
+          name,
+          amount,
+          token
+        },
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      console.log(res.data)
+      const {authorizeUri} = res.data
+      if (authorizeUri) {
+        this.props.clearCart()
+        window.location.href = authorizeUri
       }
     } catch (error) {
       console.log(error)
@@ -56,6 +84,7 @@ export class CartCheckoutPage extends Component {
         />
         <CheckoutInternetBanking
           cart={cart}
+          createInternetBankingCharge={this.createInternetBankingCharge}
         />
         {
           charge &&
