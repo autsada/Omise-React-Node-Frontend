@@ -1,1 +1,1 @@
-export const publicKey = "YOUR KEYS"
+export const publicKey = "YOUR_PUBLIC_KEY"
