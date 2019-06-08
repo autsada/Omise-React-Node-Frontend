@@ -1,1 +1,1 @@
-export const publicKey = "pkey_test_5fgo4xo24361qjx6f1k"
+export const publicKey = "YOUR KEYS"
